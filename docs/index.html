@@ -1,0 +1,12 @@
+<html>
+  <body>
+    <input id='i' style="border:none;width:90%;" value='http://'></input>
+      <script>
+        function g(){
+        var l = document.getElementById('i').value;
+        window.parent.location.href = l;
+        }
+      </script>
+    <button style="border:none;width:9%;" onclick="g()">GO</button>
+  </body>
+</html>
