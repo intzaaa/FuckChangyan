@@ -13,12 +13,8 @@
         p.ping(l, function(err, data) {
         if (err) {
           console.log("error")
-            if (data >= 10000) {
+            if (data >= 9999) {
               window.parent.location.replace("./cnl.html");
-              return;
-          }
-          if (data < 100) {
-              window.parent.location.replace("./cnl2.html");
               return;
           }
         }
