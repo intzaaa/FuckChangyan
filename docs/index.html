@@ -1,10 +1,22 @@
 <html>
   <body>
     <input id='i' style="border:none;width:90%;" value='http://'></input>
+      <script src="./ping.js" type="text/javascript"></script>
       <script>
         function g(){
+        var settings = {
+        timeout: 1000, // Optional.
+        logError: true // Optional.
+        };
+        var p = new Ping(settings);
         var l = document.getElementById('i').value;
+        p.ping(l, function(err, data) {
+        if (err) {
+          window.parent.location.replace("./cnl.html");
+          return
+        }
         window.parent.location.href = l;
+        });
         }
       </script>
     <button style="border:none;width:9%;" onclick="g()">GO</button>
