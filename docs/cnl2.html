@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+        }
+        sleep(1000).then(() => {
+            window.parent.location.replace("./");
+        })
+    </script>
+    <body>
+        <h1>网站无效</h1>
+        <a>正在自动回退......</a>
+    </body>
+</html>
