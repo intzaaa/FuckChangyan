@@ -5,13 +5,13 @@
       <script>
         function g(){
         var settings = {
-        timeout: 100000, // Optional.
+        timeout: 1000, // Optional.
         logError: true // Optional.
         };
         var p = new Ping(settings);
         var l = document.getElementById('i').value;
         p.ping(l, function(err, data) {
-        if (err) {
+        if (data >= 1000) {
           window.parent.location.replace("./cnl.html");
           return
         }
