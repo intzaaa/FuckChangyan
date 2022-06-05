@@ -5,15 +5,18 @@
       <script>
         function g(){
         var settings = {
-        timeout: 1000, // Optional.
-        logError: true // Optional.
+        timeout: 10000, // Optional.
+        logError: false // Optional.
         };
         var p = new Ping(settings);
         var l = document.getElementById('i').value;
         p.ping(l, function(err, data) {
-        if (data >= 1000) {
-          window.parent.location.replace("./cnl.html");
-          return
+        if (err) {
+          console.log("error")
+            if (data >= 10000) {
+              window.parent.location.replace("./cnl.html");
+              return;
+          }
         }
         window.parent.location.href = l;
         });
