@@ -12,7 +12,7 @@
         var l = document.getElementById('i').value;
         p.ping(l, function(err, data) {
         if (err) {
-          console.log("error")
+            console.log("error")
             if (data >= 9999) {
               window.parent.location.replace("./cnl.html");
               return;
