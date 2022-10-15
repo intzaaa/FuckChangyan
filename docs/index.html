@@ -19,10 +19,10 @@
           () => {
             let ping = new Date().getTime() - start;
             let health;
-            if (ping < 100) {
+            if (ping < 30) {
               health = `<a style="color: green"><b>优秀</b></a>`;
             }
-            if (ping > 500) {
+            if (ping > 100) {
               health = `<a style="color: red"><b>不佳</b></a>`;
             }
             document.getElementById(`speedtest`).innerHTML = `您的网络状况${
