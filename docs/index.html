@@ -1,8 +1,9 @@
 <html>
-  <body style="text-align: center">
+  <body>
     <form action="" onsubmit="go()">
-      <input id="i" style="width: 50%" value="http://" autofocus="autofocus" />
-      <input type="submit" value="Jump" style="width: 5%" />
+      <label id="speed" style="width: 5%">键入网址</label>
+      <input id="i" style="width: 80%" value="http://" autofocus="autofocus" />
+      <input type="submit" value="Jump" style="width: 6%" />
     </form>
     <script>
       function go() {
@@ -10,29 +11,33 @@
         window.parent.location.href = document.getElementById("i").value;
       }
     </script>
-    <p id="speedtest"></p>
     <script>
-      let start = new Date().getTime();
-      fetch(`https://static.geetest.com/v4/static/v1.6.3/js/gcaptcha4.js`)
-        .catch()
-        .then(
-          () => {
-            let ping = new Date().getTime() - start;
-            let health;
-            if (ping < 30) {
-              health = `<a style="color: green"><b>优秀</b></a>`;
-            }
-            if (ping > 100) {
-              health = `<a style="color: red"><b>不佳</b></a>`;
-            }
-            document.getElementById(`speedtest`).innerHTML = `您的网络状况${
-              health || `<a style="color: blue"><b>一般</b></a>`
-            }（${ping}ms）`;
-          },
-          () => {
-            document.getElementById(`speedtest`).innerText = `ERROR`;
-          }
-        );
+      let start;
+      let due;
+      let speed;
+      let ping;
+      let testimg = document.createElement(`script`);
+      testimg.src =
+        "https://static.geetest.com/v4/static/v1.6.3/js/gcaptcha4.js?" +
+        Math.random();
+      document.body.append(testimg);
+      start = new Date().getTime();
+      testimg.onload = () => {
+        due = new Date().getTime() - start;
+        let startping = new Date().getTime();
+        fetch(
+          "https://static.geetest.com/v4/static/v1.6.3/js/gcaptcha4.js?" +
+            Math.random()
+        ).then(() => {
+          ping = new Date().getTime() - startping;
+          speed = 0.199 / ((due - ping) / 1000);
+
+          document.getElementById(`speed`).innerText =
+            speed.toFixed(2) + "MB/s ";
+          console.log(due);
+          console.log(ping);
+        });
+      };
     </script>
   </body>
 </html>
