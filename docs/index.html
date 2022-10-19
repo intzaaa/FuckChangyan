@@ -11,18 +11,30 @@
         window.parent.location.href =
           "https://" + document.getElementById("i").value;
       }
-      function goproxy() {
+      function gohttpproxy() {
         event.preventDefault();
         window.parent.location.href =
-          "https://o0o.xf-yun.cm/-----" + document.getElementById("i").value;
+          "https://o0o.xf-yun.cm/-----http://" +
+          document.getElementById("i").value;
+      }
+      function gohttpsproxy() {
+        event.preventDefault();
+        window.parent.location.href =
+          "https://o0o.xf-yun.cm/-----http://" +
+          document.getElementById("i").value;
       }
     </script>
     <form action="" onsubmit="gohttp()">
       <label id="speed" style="width: 5%">键入网址</label>
       <input id="i" style="width: 100%" value="" autofocus="autofocus" />
-      <input type="submit" value="http://" />
-      <button onclick="gohttps()">https://</button>
-      <button onclick="goproxy()">JsProxy</button>
+      <div style="width: 100%">
+        <input type="submit" value="http://" />
+        <button onclick="gohttps()">https://</button>
+      </div>
+      <div>
+        <button onclick="gohttpproxy()">http://(JsProxy)</button>
+        <button onclick="gohttpsproxy()">https://(JsProxy)JsProxy</button>
+      </div>
     </form>
   </body>
 </html>
