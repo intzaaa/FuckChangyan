@@ -21,36 +21,8 @@
       <label id="speed" style="width: 5%">键入网址</label>
       <input id="i" style="width: 100%" value="" autofocus="autofocus" />
       <input type="submit" value="http://" />
-      <button onclick="gohttps()" value="http://" />
-      <button onclick="goproxy()" value="JsProxy" />
+      <button onclick="gohttps()">https://</button>
+      <button onclick="goproxy()">JsProxy</button>
     </form>
-    <script>
-      let start;
-      let due;
-      let speed;
-      let ping;
-      let testimg = document.createElement(`script`);
-      testimg.src =
-        "https://static.geetest.com/v4/static/v1.6.3/js/gcaptcha4.js?" +
-        Math.random();
-      document.body.append(testimg);
-      start = new Date().getTime();
-      testimg.onload = () => {
-        due = new Date().getTime() - start;
-        let startping = new Date().getTime();
-        fetch(
-          "https://static.geetest.com/v4/static/v1.6.3/js/gcaptcha4.js?" +
-            Math.random()
-        ).then(() => {
-          ping = new Date().getTime() - startping;
-          speed = 0.199 / ((due - ping) / 1000);
-
-          document.getElementById(`speed`).innerText =
-            speed.toFixed(2) + "MB/s ";
-          console.log(due);
-          console.log(ping);
-        });
-      };
-    </script>
   </body>
 </html>
