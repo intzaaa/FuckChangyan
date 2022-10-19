@@ -1,16 +1,29 @@
 <html>
   <body>
-    <form action="" onsubmit="go()">
-      <label id="speed" style="width: 5%">键入网址</label>
-      <input id="i" style="width: 80%" value="http://" autofocus="autofocus" />
-      <input type="submit" value="Jump" style="width: 6%" />
-    </form>
     <script>
-      function go() {
+      function gohttp() {
         event.preventDefault();
-        window.parent.location.href = document.getElementById("i").value;
+        window.parent.location.href =
+          "http://" + document.getElementById("i").value;
+      }
+      function gohttps() {
+        event.preventDefault();
+        window.parent.location.href =
+          "https://" + document.getElementById("i").value;
+      }
+      function goproxy() {
+        event.preventDefault();
+        window.parent.location.href =
+          "https://o0o.xf-yun.cm/-----" + document.getElementById("i").value;
       }
     </script>
+    <form action="" onsubmit="gohttp()">
+      <label id="speed" style="width: 5%">键入网址</label>
+      <input id="i" style="width: 100%" value="" autofocus="autofocus" />
+      <input type="submit" value="http://" />
+      <button onclick="gohttps()" value="http://" />
+      <button onclick="goproxy()" value="JsProxy" />
+    </form>
     <script>
       let start;
       let due;
