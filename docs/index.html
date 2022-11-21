@@ -5,6 +5,9 @@
   </head>
   <body>
     <script>
+      if (self != top) {
+        window.parent.location.replace(window.location.href);
+      }
       function go() {
         event.preventDefault();
         window.parent.location.href =
