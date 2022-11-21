@@ -1,4 +1,8 @@
 <html>
+  <head>
+    <title>Jump</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
   <body>
     <script>
       function go() {
@@ -6,32 +10,34 @@
         window.parent.location.href =
           localStorage.getItem("p") + document.getElementById("i").value;
       }
+      function showProtocol() {
+        let p = localStorage.getItem("p");
+        if (p) {
+          document.getElementById("cp").innerText = p;
+        } else {
+          localStorage.setItem("p", "http://");
+        }
+      }
+      function changeProtocol() {
+        let p = localStorage.getItem("p");
+        if (p === "http://") {
+          localStorage.setItem("p", "https://");
+        } else {
+          localStorage.setItem("p", "http://");
+        }
+        showProtocol();
+      }
     </script>
     <form
       onsubmit="go()"
       style="display: grid; grid-template-columns: 0.05fr auto"
     >
-      <button type="button" onclick="changeProtocol()"><a id="cp"></a></button>
-      <script>
-        function showProtocol() {
-          let p = localStorage.getItem("p");
-          if (p) {
-            document.getElementById("cp").innerText = p;
-          } else {
-            localStorage.setItem("p", "http://");
-          }
-        }
-        function changeProtocol() {
-          let p = localStorage.getItem("p");
-          if (p === "http://") {
-            localStorage.setItem("p", "https://");
-          } else {
-            localStorage.setItem("p", "http://");
-          }
+      <button type="button" onclick="changeProtocol()">
+        <a id="cp">...</a>
+        <script>
           showProtocol();
-        }
-        showProtocol();
-      </script>
+        </script>
+      </button>
       <input id="i" required checked autofocus="autofocus" />
     </form>
   </body>
