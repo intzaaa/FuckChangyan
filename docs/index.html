@@ -1,51 +1,38 @@
 <html>
   <body>
     <script>
-      function go(protocol) {
+      function go() {
         event.preventDefault();
-        console.log(protocol);
         window.parent.location.href =
-          protocol + document.getElementById("i").value;
+          localStorage.getItem("p") + document.getElementById("i").value;
       }
     </script>
-    <form action="" onsubmit="go(`http:\/\/`)">
-      <input
-        id="i"
-        style="width: 100%"
-        placeholder="在此处键入网址..."
-        required
-        checked
-        autofocus="autofocus"
-      />
-      <div style="width: 100%">
-        <a>Direct</a>
-        <div style="width: 100%">
-          <input type="submit" value="http://" />
-          <button onclick="go(`https:\/\/`)">https://</button>
-        </div>
-      </div>
-      <div style="width: 100%">
-        <a>CloudFlare-JsProxy</a>
-        <div style="width: 100%">
-          <button onclick="go(`https:\/\/o0o.xf-yun.cn/-----http:\/\/`)">
-            http://
-          </button>
-          <button onclick="go(`https:\/\/o0o.xf-yun.cn/-----https:\/\/`)">
-            https://
-          </button>
-        </div>
-      </div>
-      <div>
-        <a>Proxy233-JsProxy</a>
-        <div style="width: 100%">
-          <button onclick="go(`https:\/\/proxy233.xf-yun.cn/-----http:\/\/`)">
-            http://
-          </button>
-          <button onclick="go(`https:\/\/proxy233.xf-yun.cn/-----https:\/\/`)">
-            https://
-          </button>
-        </div>
-      </div>
+    <form
+      onsubmit="go()"
+      style="display: grid; grid-template-columns: 0.05fr auto"
+    >
+      <button type="button" onclick="changeProtocol()"><a id="cp"></a></button>
+      <script>
+        function showProtocol() {
+          let p = localStorage.getItem("p");
+          if (p) {
+            document.getElementById("cp").innerText = p;
+          } else {
+            localStorage.setItem("p", "http://");
+          }
+        }
+        function changeProtocol() {
+          let p = localStorage.getItem("p");
+          if (p === "http://") {
+            localStorage.setItem("p", "https://");
+          } else {
+            localStorage.setItem("p", "http://");
+          }
+          showProtocol();
+        }
+        showProtocol();
+      </script>
+      <input id="i" required checked autofocus="autofocus" />
     </form>
   </body>
 </html>
