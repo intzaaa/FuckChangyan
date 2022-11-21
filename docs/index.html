@@ -15,24 +15,32 @@
         if (p) {
           document.getElementById("cp").innerText = p;
         } else {
-          localStorage.setItem("p", "http://");
+          localStorage.setItem("p", "http ://");
         }
       }
       function changeProtocol() {
         let p = localStorage.getItem("p");
-        if (p === "http://") {
+        if (p === "http ://") {
           localStorage.setItem("p", "https://");
         } else {
-          localStorage.setItem("p", "http://");
+          localStorage.setItem("p", "http ://");
         }
         showProtocol();
       }
     </script>
     <form
       onsubmit="go()"
-      style="display: grid; grid-template-columns: 0.05fr auto"
+      style="display: grid; grid-template-columns: 0.1fr auto; margin-bottom: 0"
     >
-      <button type="button" onclick="changeProtocol()">
+      <button
+        type="button"
+        onclick="changeProtocol()"
+        style="
+          background-color: transparent;
+          border: none;
+          font-family: 'Courier New', Courier, monospace;
+        "
+      >
         <a id="cp">...</a>
         <script>
           showProtocol();
@@ -40,5 +48,24 @@
       </button>
       <input id="i" required checked autofocus="autofocus" />
     </form>
+    <script>
+      function store() {
+        localStorage.setItem(
+          "note",
+          String(document.getElementById("note").value)
+        );
+      }
+    </script>
+    <textarea
+      onkeyup="store()"
+      id="note"
+      style="width: 100%; resize: vertical"
+    ></textarea>
+    <script>
+      let note = localStorage.getItem("note");
+      if (note) {
+        document.getElementById("note").innerText = note;
+      }
+    </script>
   </body>
 </html>
