@@ -3,11 +3,12 @@
     <title>Jump</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
+  <body style="height: 100vh; margin: 0; padding: 0; overflow-y: hidden">
     <script>
       if (self != top) {
         window.parent.location.replace(window.location.href);
       }
+      document.location.hash = "#place";
       function go() {
         event.preventDefault();
         window.parent.location.href =
@@ -45,8 +46,8 @@
         style="
           background-color: transparent;
           border: none;
-          font-family: 'Courier New', Courier, monospace;
           white-space: nowrap;
+          font-family: 'Courier New', Courier, monospace;
         "
       >
         <a id="cp">...</a>
@@ -54,7 +55,12 @@
           showProtocol();
         </script>
       </button>
-      <input id="i" required checked autofocus="autofocus" />
+      <input
+        id="i"
+        required
+        checked
+        style="font-family: 'Courier New', Courier, monospace"
+      />
     </form>
     <script>
       function store() {
@@ -64,16 +70,23 @@
         );
       }
     </script>
-    <textarea
-      onkeyup="store()"
-      id="note"
-      style="width: 100%; resize: vertical"
-    ></textarea>
-    <script>
-      let note = localStorage.getItem("note");
-      if (note) {
-        document.getElementById("note").innerText = note;
-      }
-    </script>
+    <div id="place">
+      <textarea
+        onkeyup="store()"
+        id="note"
+        style="
+          width: 100%;
+          height: 100%;
+          resize: vertical;
+          font-family: 'Courier New', Courier, monospace;
+        "
+      ></textarea>
+      <script>
+        let note = localStorage.getItem("note");
+        if (note) {
+          document.getElementById("note").innerText = note;
+        }
+      </script>
+    </div>
   </body>
 </html>
