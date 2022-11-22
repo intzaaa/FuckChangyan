@@ -3,9 +3,9 @@
     <title>Jump</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body style="height: 100vh; margin: 0; padding: 0; overflow-y: hidden">
+  <body style="margin: 0; padding: 0">
     <script>
-      if (self != top) {
+      if (self.frameElement && self.frameElement.tagName == "IFRAME") {
         window.parent.location.replace(window.location.href);
       }
       function go() {
@@ -38,6 +38,7 @@
           display: grid;
           grid-template-columns: 0.05fr auto;
           margin-bottom: 0;
+          height: 20px;
         "
       >
         <button
@@ -67,7 +68,7 @@
       function store() {
         localStorage.setItem(
           "note",
-          String(document.getElementById("note").value)
+          `${document.getElementById("note").value}`
         );
         let jump = document.getElementById("jump");
         if (
@@ -83,7 +84,10 @@
         }
       }
     </script>
-    <div id="place">
+    <div
+      id="place"
+      style="width: 100%; position: absolute; top: 20px; bottom: 0px; left: 0px"
+    >
       <textarea
         onkeyup="store()"
         id="note"
@@ -97,7 +101,7 @@
       <script>
         let note = localStorage.getItem("note");
         if (note) {
-          document.getElementById("note").innerText = note;
+          document.getElementById("note").innerHTML = `${note}`;
         }
         store();
       </script>
