@@ -8,7 +8,6 @@
       if (self != top) {
         window.parent.location.replace(window.location.href);
       }
-      document.location.hash = "#place";
       function go() {
         event.preventDefault();
         window.parent.location.href =
@@ -32,42 +31,56 @@
         showProtocol();
       }
     </script>
-    <form
-      onsubmit="go()"
-      style="
-        display: grid;
-        grid-template-columns: 0.05fr auto;
-        margin-bottom: 0;
-      "
-    >
-      <button
-        type="button"
-        onclick="changeProtocol()"
+    <div id="jump" style="display: none">
+      <form
+        onsubmit="go()"
         style="
-          background-color: transparent;
-          border: none;
-          white-space: nowrap;
-          font-family: 'Courier New', Courier, monospace;
+          display: grid;
+          grid-template-columns: 0.05fr auto;
+          margin-bottom: 0;
         "
       >
-        <a id="cp">...</a>
-        <script>
-          showProtocol();
-        </script>
-      </button>
-      <input
-        id="i"
-        required
-        checked
-        style="font-family: 'Courier New', Courier, monospace"
-      />
-    </form>
+        <button
+          type="button"
+          onclick="changeProtocol()"
+          style="
+            background-color: transparent;
+            border: none;
+            white-space: nowrap;
+            font-family: 'Courier New', Courier, monospace;
+          "
+        >
+          <a id="cp">...</a>
+          <script>
+            showProtocol();
+          </script>
+        </button>
+        <input
+          id="i"
+          required
+          checked
+          style="font-family: 'Courier New', Courier, monospace"
+        />
+      </form>
+    </div>
     <script>
       function store() {
         localStorage.setItem(
           "note",
           String(document.getElementById("note").value)
         );
+        let jump = document.getElementById("jump");
+        if (
+          localStorage
+            .getItem("note")
+            .includes(
+              "Wenn der Zweck die Mittel heiligt, dann ist der Zweck unheilig."
+            )
+        ) {
+          jump.setAttribute("style", "");
+        } else {
+          jump.setAttribute("style", "display: none");
+        }
       }
     </script>
     <div id="place">
@@ -86,6 +99,7 @@
         if (note) {
           document.getElementById("note").innerText = note;
         }
+        store();
       </script>
     </div>
   </body>
