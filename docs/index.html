@@ -71,13 +71,7 @@
           `${document.getElementById("note").value}`
         );
         let jump = document.getElementById("jump");
-        if (
-          localStorage
-            .getItem("note")
-            .includes(
-              "审查制度，就像奴隶制一样，永不可能合法，即便它作为法律存在过一千多遍。"
-            )
-        ) {
+        if (localStorage.getItem("note").includes("")) {
           jump.setAttribute("style", "");
         } else {
           jump.setAttribute("style", "display: none");
