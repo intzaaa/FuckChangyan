@@ -11,7 +11,8 @@
       function go() {
         event.preventDefault();
         window.parent.location.href =
-          localStorage.getItem("p") + document.getElementById("i").value;
+          localStorage.getItem("p").replace(" ", "") +
+          document.getElementById("i").value;
       }
       function showProtocol() {
         let p = localStorage.getItem("p");
