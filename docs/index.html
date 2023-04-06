@@ -1,25 +1,47 @@
+<!-- @format -->
+
 <html>
   <head>
     <title>Jump</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1" />
   </head>
   <body style="margin: 0; padding: 0">
+    <script src="check.js"></script>
     <script>
-      // if (top != self) {
-      //   window.parent.location.replace(window.location.href);
-      // }
+      function t() {
+        let t = localStorage.getItem("t");
+        let pt = localStorage.getItem("pt");
+        if (!t) {
+          localStorage.setItem("t", 0);
+        }
+        if (!pt) {
+          localStorage.setItem("pt", String(new Date().getUTCFullYear()) + String(new Date().getUTCMonth()) + String(new Date().getUTCDate()));
+        }
+        if (Number(pt) != Number(String(new Date().getUTCFullYear()) + String(new Date().getUTCMonth()) + String(new Date().getUTCDate()))) {
+          localStorage.setItem("pt", String(new Date().getUTCFullYear()) + String(new Date().getUTCMonth()) + String(new Date().getUTCDate()));
+          localStorage.setItem("t", 0);
+        }
+      }
+      t();
       function go() {
         event.preventDefault();
-        window.parent.location.href =
-          localStorage.getItem("p").replace(" ", "") +
-          document.getElementById("i").value;
+        if ("" === document.getElementById("i").value) {
+          window.parent.location.replace("/tos.html");
+        }
+        if (Number(localStorage.getItem("t")) < 30) {
+          localStorage.setItem("t", Number(localStorage.getItem("t")) + 1);
+          window.parent.location.href = localStorage.getItem("p").replace(" ", "") + document.getElementById("i").value;
+        }
       }
       function showProtocol() {
         let p = localStorage.getItem("p");
         if (p) {
-          document.getElementById("cp").innerText = p;
+          document.getElementById("cp").innerText = "(" + localStorage.getItem("t") + "/30)" + p;
         } else {
           localStorage.setItem("p", "http ://");
+          showProtocol();
         }
       }
       function changeProtocol() {
@@ -32,26 +54,16 @@
         showProtocol();
       }
     </script>
-    <div id="jump" style="display: none">
+    <div
+      id="jump"
+      style="display: none">
       <form
         onsubmit="go()"
-        style="
-          display: grid;
-          grid-template-columns: 0.05fr auto;
-          margin-bottom: 0;
-          height: 20px;
-        "
-      >
+        style="display: grid; grid-template-columns: 0.05fr auto; margin-bottom: 0; height: 20px">
         <button
           type="button"
           onclick="changeProtocol()"
-          style="
-            background-color: transparent;
-            border: none;
-            white-space: nowrap;
-            font-family: 'Courier New', Courier, monospace;
-          "
-        >
+          style="background-color: transparent; border: none; white-space: nowrap; font-family: 'Courier New', Courier, monospace">
           <a id="cp">...</a>
           <script>
             showProtocol();
@@ -59,18 +71,13 @@
         </button>
         <input
           id="i"
-          required
-          checked
-          style="font-family: 'Courier New', Courier, monospace"
-        />
+          placeholder="您一旦使用本服务发起指向不属于此域的连接即表明您同意本服务的服务条款。要查看服务条款，请您在不在此输入任何字符的情况下选中此处并按下'Enter'键，这不会消耗您的使用次数。"
+          style="font-family: 'Courier New', Courier, monospace" />
       </form>
     </div>
     <script>
       function store() {
-        localStorage.setItem(
-          "note",
-          `${document.getElementById("note").value}`
-        );
+        localStorage.setItem("note", `${document.getElementById("note").value}`);
         let jump = document.getElementById("jump");
         if (localStorage.getItem("note").includes("")) {
           jump.setAttribute("style", "");
@@ -81,18 +88,11 @@
     </script>
     <div
       id="place"
-      style="width: 100%; position: absolute; top: 20px; bottom: 0px; left: 0px"
-    >
+      style="width: 100%; position: absolute; top: 20px; bottom: 0px; left: 0px">
       <textarea
         onkeyup="store()"
         id="note"
-        style="
-          width: 100%;
-          height: 100%;
-          resize: vertical;
-          font-family: 'Courier New', Courier, monospace;
-        "
-      ></textarea>
+        style="width: 100%; height: 100%; resize: vertical; font-family: 'Courier New', Courier, monospace"></textarea>
       <script>
         let note = localStorage.getItem("note");
         if (note) {
