@@ -30,7 +30,7 @@
         if ("" === document.getElementById("i").value) {
           window.parent.location.replace("/tos.html");
         }
-        if (Number(localStorage.getItem("t")) < 30) {
+        if ((Number(localStorage.getItem("t")) < 30) & ("" !== document.getElementById("i").value)) {
           localStorage.setItem("t", Number(localStorage.getItem("t")) + 1);
           window.parent.location.href = localStorage.getItem("p").replace(" ", "") + document.getElementById("i").value;
         }
