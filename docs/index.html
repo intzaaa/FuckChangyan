@@ -8,8 +8,8 @@
       content="width=device-width, initial-scale=1" />
   </head>
   <body style="margin: 0; padding: 0">
-    <script src="check.js"></script>
     <script>
+      new Element("script", { src: "check.js" });
       function t() {
         let t = localStorage.getItem("t");
         let pt = localStorage.getItem("pt");
@@ -33,6 +33,7 @@
         if ((Number(localStorage.getItem("t")) < 30) & ("" !== document.getElementById("i").value)) {
           localStorage.setItem("t", Number(localStorage.getItem("t")) + 1);
           window.parent.location.href = localStorage.getItem("p").replace(" ", "") + document.getElementById("i").value;
+          jump.setAttribute("style", "display: none");
         }
       }
       function showProtocol() {
