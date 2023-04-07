@@ -9,26 +9,9 @@
   </head>
   <body style="margin: 0; padding: 0">
     <script>
-      function loadScript(src, callback) {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        // IE
-        if (script.readyState) {
-          script.onreadystatechange = function () {
-            if (script.readyState === "loaded" || script.readyState === "complete") {
-              script.onreadystatechange = null;
-              callback();
-            }
-          };
-        }
-        // Others
-        else {
-          script.onload = callback;
-        }
-        script.src = src;
-        document.head.appendChild(script);
+      if (!new URL(window.location.href).search) {
+        window.parent.location.replace(window.location.href + "/?top");
       }
-      loadScript("check.js");
     </script>
     <script>
       function t() {
@@ -53,7 +36,7 @@
         }
         if ((Number(localStorage.getItem("t")) < 30) & ("" !== document.getElementById("i").value)) {
           localStorage.setItem("t", Number(localStorage.getItem("t")) + 1);
-          window.parent.location.href = localStorage.getItem("p").replace(" ", "") + document.getElementById("i").value;
+          window.parent.location.href = localStorage.getItem("p").replace(" ", "").replace("jump.xf-yun.cn", "") + document.getElementById("i").value;
           jump.setAttribute("style", "display: none");
         }
       }
