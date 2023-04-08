@@ -14,8 +14,8 @@
       async function check() {
         for (
           ;
-          (String(new URL(window.location.href)) !== "https://jump.xf-yun.cn/?top" &&
-            String(new URL(window.location.hostname) !== ("localhost" || "127.0.0.1"))) ||
+          (String(window.location.href) !== "https://jump.xf-yun.cn/?top" &&
+            String(window.location.hostname) !== ("localhost" || "127.0.0.1"))) ||
           top != self;
 
         ) {
