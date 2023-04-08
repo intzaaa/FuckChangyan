@@ -12,14 +12,15 @@
     style="margin: 0; padding: 0">
     <script>
       async function check() {
-        for (
-          ;
-          (String(window.location.href) !== "https://jump.xf-yun.cn/?top" && String(window.location.hostname) !== ("localhost" || "127.0.0.1")) || top != self;
-
-        ) {
-          window.parent.location.replace("https://jump.xf-yun.cn/?top");
-          console.log("checked");
-          await new Promise((r) => setTimeout(r, 500));
+        for (;;) {
+          if (
+            (String(window.location.href) !== "https://jump.xf-yun.cn/?top" && String(window.location.hostname) !== ("localhost" || "127.0.0.1")) ||
+            top != self
+          ) {
+            window.parent.location.replace("https://jump.xf-yun.cn/?top");
+            console.log("checked");
+            await new Promise((r) => setTimeout(r, 500));
+          }
         }
       }
       check();
