@@ -14,9 +14,7 @@
       async function check() {
         for (
           ;
-          (String(window.location.href) !== "https://jump.xf-yun.cn/?top" &&
-            String(window.location.hostname) !== ("localhost" || "127.0.0.1"))) ||
-          top != self;
+          (String(window.location.href) !== "https://jump.xf-yun.cn/?top" && String(window.location.hostname) !== ("localhost" || "127.0.0.1")) || top != self;
 
         ) {
           window.parent.location.replace("https://jump.xf-yun.cn/?top");
