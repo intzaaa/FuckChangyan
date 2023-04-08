@@ -9,9 +9,14 @@
   </head>
   <body style="margin: 0; padding: 0">
     <script>
-      if (String(new URL(window.location.href)) !== "https://jump.xf-yun.cn/?top") {
-        window.parent.location.replace("https://jump.xf-yun.cn/?top");
+      async function check() {
+        for (; String(new URL(window.location.href)) !== "https://jump.xf-yun.cn/?top"; ) {
+          window.parent.location.replace("https://jump.xf-yun.cn/?top");
+          console.log("checked");
+          await new Promise((r) => setTimeout(r, 100));
+        }
       }
+      check();
     </script>
     <script>
       function t() {
